@@ -1,0 +1,39 @@
+model: ch57x-2
+orientation: normal
+rows: 3
+columns: 4
+knobs: 1
+
+layers:
+  # Layer 1: Meetings & Comms (Zoom + Slack + media)
+  # Zoom: enable "global shortcut" for mute in Zoom prefs for key 1 to work anywhere
+  - buttons:
+      - ["cmd-shift-a", "cmd-shift-v", "cmd-shift-s", "cmd-w"]
+      - ["cmd-k", "cmd-n", "cmd-shift-y", "up"]
+      - ["play", "prev", "next", "mute"]
+    knobs:
+      - ccw: "volumedown"
+        press: "mute"
+        cw: "volumeup"
+
+  # Layer 2: Deep work / app switching (bind ctrl-alt-* chords in Raycast)
+  # c=Cursor l=Claude s=Slack o=Obsidian b=Chrome t=Warp p=Conductor m=MacWhisper
+  - buttons:
+      - ["ctrl-alt-c", "ctrl-alt-l", "ctrl-alt-s", "ctrl-alt-o"]
+      - ["ctrl-alt-b", "ctrl-alt-t", "ctrl-alt-p", "ctrl-alt-m"]
+      - ["cmd-i", "cmd-l", "cmd-k", "cmd-enter"]
+    knobs:
+      - ccw: "ctrl-shift-tab"
+        press: "cmd-w"
+        cw: "ctrl-tab"
+
+  # Layer 3: Capture & tracking (bind in Todoist/Toggl prefs + Raycast)
+  # t=Todoist quick-add y=Toggl start/stop d=daily note w=weekly note c=clipboard history
+  - buttons:
+      - ["ctrl-alt-shift-t", "ctrl-alt-shift-y", "ctrl-alt-shift-d", "ctrl-alt-shift-w"]
+      - ["cmd-o", "ctrl-alt-shift-c", "ctrl-alt-shift-1", "ctrl-alt-shift-2"]
+      - ["ctrl-alt-shift-3", "ctrl-alt-shift-4", "ctrl-alt-shift-5", "ctrl-alt-shift-6"]
+    knobs:
+      - ccw: "wheelup"
+        press: "click"
+        cw: "wheeldown"
