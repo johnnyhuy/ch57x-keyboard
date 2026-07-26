@@ -1,54 +1,52 @@
 # ch57x-keyboard
 
-Config for my 3x4 macro keypad (12 keys + 1 knob, VID:PID `1189:8890`), programmed with [kriomant/ch57x-keyboard-tool](https://github.com/kriomant/ch57x-keyboard-tool).
+Config for my **Tessl 2×3** macro keypad (6 keys + 1 knob, VID:PID `1189:8890`), programmed with [kriomant/ch57x-keyboard-tool](https://github.com/kriomant/ch57x-keyboard-tool).
+
+No side layer button — single layer only.
 
 ## Setup
 
 ```sh
 # macOS: download prebuilt binary
-curl -sL https://github.com/kriomant/ch57x-keyboard-tool/releases/download/v1.7.0/ch57x-keyboard-tool-universal-apple-darwin.tar.gz | tar xz
-./ch57x-keyboard-tool validate mapping.yaml
-./ch57x-keyboard-tool upload mapping.yaml   # keyboard must be USB-connected
+curl -sL https://github.com/kriomant/ch57x-keyboard-tool/releases/download/v1.7.0/ch57x-keyboard-tool-universal-apple-darwin.tar.gz \
+  | tar xz -C ~/.local/bin ch57x-keyboard-tool
+
+# keyboard must be USB-connected
+ch57x-keyboard-tool validate mapping.yaml
+ch57x-keyboard-tool upload mapping.yaml
 ```
 
-## Layers
+Local copy used on this machine: `~/ch57x-mapping.yaml` (keep in sync with `mapping.yaml` here).
 
-### Layer 1 — Meetings & Comms (Zoom + Slack + media)
+## Layout
 
-| Keys | Action |
-|---|---|
-| Row 1 | Zoom: mute `⌘⇧A`, video `⌘⇧V`, share `⌘⇧S`, leave `⌘W` |
-| Row 2 | Slack: quick switcher `⌘K`, new message `⌘N`, set status `⌘⇧Y`, edit last message `↑` |
-| Row 3 | Media: play, prev, next, mute |
-| Knob | ccw volume down / press mute / cw volume up |
+Knob on the right. Top → bottom, left → right:
 
-### Layer 2 — Deep work / app switching
+```
+[ Esc ] [ ⌘A then ⌫  clear ] [ ⌘↵  accept ]
+[ ⌘⇧4 ] [ ⌘V  paste        ] [ ⌃⇧D dictation ]
+                              ⟳ undo · play/pause · redo
+```
 
-Chords bound in Raycast → Open App commands:
+| Control | Bind | Notes |
+|---------|------|--------|
+| Top-left | `Esc` | Cancel |
+| Top-middle | `⌘A`, `⌫` | Select all + clear |
+| Top-right | `⌘↵` | Accept / submit (agents) |
+| Bottom-left | `⌘⇧4` | Screenshot |
+| Bottom-middle | `⌘V` | Paste |
+| Bottom-right | `⌃⇧D` | macOS Dictation |
+| Knob CCW | `⌘Z` | Undo |
+| Knob press | `play` | Play/pause |
+| Knob CW | `⌘⇧Z` | Redo |
 
-| Chord | App |
-|---|---|
-| `⌃⌥C` / `⌃⌥L` / `⌃⌥S` / `⌃⌥O` | Cursor / Claude / Slack / Obsidian |
-| `⌃⌥B` / `⌃⌥T` / `⌃⌥P` / `⌃⌥M` | Chrome / Warp / Conductor / MacWhisper |
-| Row 3 | Cursor: agent `⌘I`, chat `⌘L`, inline `⌘K`, accept `⌘↩` |
-| Knob | ccw prev tab / press close tab / cw next tab |
+## macOS Dictation
 
-### Layer 3 — Capture & tracking
+System Settings → Keyboard → Dictation:
 
-| Keys | Action |
-|---|---|
-| `⌃⌥⇧T` | Todoist quick-add (bind in Todoist prefs) |
-| `⌃⌥⇧Y` | Toggl start/stop (bind in Toggl prefs) |
-| `⌃⌥⇧D` / `⌃⌥⇧W` | Obsidian daily / weekly note (via Raycast) |
-| `⌘O`, `⌃⌥⇧C` | Obsidian quick switcher, clipboard history |
-| Rest | Spare `⌃⌥⇧1–6` chords for future Raycast scripts |
-| Knob | ccw scroll up / press click / cw scroll down |
+- **Dictation** on
+- **Shortcut** → customise to **⌃⇧D** (not the 🎤 key — pad can’t send that)
 
-## App-side setup required
+## Related
 
-The tool only writes HID key events — chords are inert until bound:
-
-- **Zoom** → Settings → Keyboard Shortcuts → enable global hotkey for mute
-- **Raycast** → bind `⌃⌥*` chords to Open App / script commands
-- **Todoist** → Settings → quick-add shortcut
-- **Toggl Track** → Preferences → global start/stop shortcut
+- Foot pedals (separate hardware): program with [rgerganov/footswitch](https://github.com/rgerganov/footswitch), same `⌃⇧D` chord for Dictation.
